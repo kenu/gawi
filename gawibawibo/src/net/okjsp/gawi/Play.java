@@ -6,11 +6,11 @@ public class Play {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String item1 = "°¡À§";
+		String item1 = "ê°€ìœ„";
 		System.out.println(item1);
-		String item2 = "¹ÙÀ§";
+		String item2 = "ë°”ìœ„";
 		System.out.println(item2);
-		String item3 = "º¸";
+		String item3 = "ë³´";
 		System.out.println(item3);
 	}
 
