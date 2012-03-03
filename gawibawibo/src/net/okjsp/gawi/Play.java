@@ -29,7 +29,7 @@ public class Play {
 
 		System.out.println("----\n컴퓨터: " +
 				items[computerChoice] +
-				"\n그대: " +
+				"\n당신: " +
 				items[choice]);
 		
 		String judgement = "당신이 이겼습니다";
@@ -39,15 +39,15 @@ public class Play {
 		} else if (choice == 0 && computerChoice == 1) {
 			judgement = "컴퓨터가 이겼습니다.";
 		} else if (choice == 0 && computerChoice == 2) {
-			judgement = "그대가 이겼습니다.";
+			judgement = "당신가 이겼습니다.";
 		} else if (choice == 1 && computerChoice == 2) {
 			judgement = "컴퓨터가 이겼습니다.";
 		} else if (choice == 1 && computerChoice == 0) {
-			judgement = "그대가 이겼습니다.";
+			judgement = "당신가 이겼습니다.";
 		} else if (choice == 2 && computerChoice == 0) {
 			judgement = "컴퓨터가 이겼습니다.";
 		} else if (choice == 2 && computerChoice == 1) {
-			judgement = "그대가 이겼습니다.";
+			judgement = "당신가 이겼습니다.";
 		}
 		
 		System.out.println("----\n" + judgement);
