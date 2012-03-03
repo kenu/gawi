@@ -10,17 +10,17 @@ public class Play {
 	 */
 	public static void main(String[] args) {
 		while (game()) {
-			System.out.println("====");
+			System.out.println("====\n\n\n====");
 		}
 	}
 
 	public static boolean game() {
 		String[] items = { "가위", "바위", "보" };
 		for (int i = 0; i < items.length; i++) {
-			System.out.println(i + ":" + items[i]);
+			System.out.print(i + ":" + items[i] + " ");
 		}
 
-		System.out.print("----\n선택하세요:");
+		System.out.print("\n----\n선택하세요:");
 
 		Scanner scanner = new Scanner(System.in);
 		String next = scanner.next();
@@ -33,8 +33,8 @@ public class Play {
 
 		int computerChoice = new Random(System.nanoTime()).nextInt(3);
 
-		System.out.println("----\n" + "당신: " + items[choice] + "컴퓨터: "
-				+ items[computerChoice] + "\n");
+		System.out.println("----\n" + "당신: " + items[choice] + "\n컴퓨터: "
+				+ items[computerChoice]);
 
 		String judgement = judge(choice, computerChoice);
 
