@@ -7,9 +7,8 @@ public class Play {
 	 */
 	public static void main(String[] args) {
 		String[] items = {"가위", "바위", "보"};
-		System.out.println(items[0]);
-		System.out.println(items[1]);
-		System.out.println(items[2]);
+		for (int i = 0; i < items.length; i++) {
+			System.out.println(items[i]);
+		}
 	}
-
 }
