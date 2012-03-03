@@ -36,17 +36,11 @@ public class Play {
 		
 		if (choice == computerChoice) {
 			judgement = "비겼습니다.";
-		} else if (choice == 0 && computerChoice == 1) {
+		} else if ((choice == 0 && computerChoice == 1) 
+				|| (choice == 1 && computerChoice == 2) 
+				|| (choice == 2 && computerChoice == 0)) {
 			judgement = "컴퓨터가 이겼습니다.";
-		} else if (choice == 1 && computerChoice == 2) {
-			judgement = "컴퓨터가 이겼습니다.";
-		} else if (choice == 2 && computerChoice == 0) {
-			judgement = "컴퓨터가 이겼습니다.";
-		} else if (choice == 0 && computerChoice == 2) {
-			judgement = "당신이 이겼습니다.";
-		} else if (choice == 1 && computerChoice == 0) {
-			judgement = "당신이 이겼습니다.";
-		} else if (choice == 2 && computerChoice == 1) {
+		} else {
 			judgement = "당신이 이겼습니다.";
 		}
 		
