@@ -38,16 +38,16 @@ public class Play {
 			judgement = "비겼습니다.";
 		} else if (choice == 0 && computerChoice == 1) {
 			judgement = "컴퓨터가 이겼습니다.";
-		} else if (choice == 0 && computerChoice == 2) {
-			judgement = "당신가 이겼습니다.";
 		} else if (choice == 1 && computerChoice == 2) {
 			judgement = "컴퓨터가 이겼습니다.";
-		} else if (choice == 1 && computerChoice == 0) {
-			judgement = "당신가 이겼습니다.";
 		} else if (choice == 2 && computerChoice == 0) {
 			judgement = "컴퓨터가 이겼습니다.";
+		} else if (choice == 0 && computerChoice == 2) {
+			judgement = "당신이 이겼습니다.";
+		} else if (choice == 1 && computerChoice == 0) {
+			judgement = "당신이 이겼습니다.";
 		} else if (choice == 2 && computerChoice == 1) {
-			judgement = "당신가 이겼습니다.";
+			judgement = "당신이 이겼습니다.";
 		}
 		
 		System.out.println("----\n" + judgement);
