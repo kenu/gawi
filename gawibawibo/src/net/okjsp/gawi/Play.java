@@ -32,7 +32,13 @@ public class Play {
 				"\n당신: " +
 				items[choice]);
 		
-		String judgement = "당신이 이겼습니다";
+		String judgement = judge(choice, computerChoice);
+		
+		System.out.println("----\n" + judgement);
+	}
+
+	public static String judge(int choice, int computerChoice) {
+		String judgement;
 		
 		if (choice == computerChoice) {
 			judgement = "비겼습니다.";
@@ -43,7 +49,6 @@ public class Play {
 		} else {
 			judgement = "당신이 이겼습니다.";
 		}
-		
-		System.out.println("----\n" + judgement);
+		return judgement;
 	}
 }
