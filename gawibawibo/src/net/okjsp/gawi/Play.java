@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Play {
 
 	private static ArrayList<Game> list = new ArrayList<Game>();
+	static DataAccessObject dao = new DataAccessObject();
 
 	/**
 	 * @param args
@@ -74,6 +75,7 @@ public class Play {
 		Date datetime = new Date();
 		Game game = new Game(choice, computerChoice, judgement, datetime);
 		list.add(game);
+		dao.save(game);
 	}
 
 	public static String judge(int choice, int computerChoice) {
