@@ -1,13 +1,13 @@
 package net.okjsp.gawi;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
 
-	private static ArrayList<Game> list;
+	private static List<Game> list;
 	static DataAccessObject dao = new DataAccessObject();
 
 	/**

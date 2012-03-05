@@ -1,14 +1,33 @@
 package net.okjsp.gawi;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class DataAccessObject {
+	private static SqlSessionFactory sqlSessionFactory;
+
+	static {
+		String resource = "net/okjsp/gawi/mybatis-config.xml";
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public int save(Game game) {
 		// getConnection()
@@ -62,44 +81,14 @@ public class DataAccessObject {
 		return conn;
 	}
 
-	public ArrayList<Game> load() {
-		ArrayList<Game> list = new ArrayList<Game>();
-		Connection conn = null;
-		PreparedStatement statement = null;
-		ResultSet rs = null;
-		
+	public List<Game> load() {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Game> list = null;
 		try {
-			conn = getConnection();
-			String sql = "select * from game order by id";
-			statement = conn.prepareStatement(sql);
-			rs = statement.executeQuery();
-			while(rs.next()) {
-				Game game = new Game();
-				game.setChoice(rs.getInt("choice"));
-				game.setComputerChoice(rs.getInt("computerChoice"));
-				game.setJudgement(rs.getString("judgement"));
-				game.setDatetime(rs.getTimestamp("datetime"));
-				
-				list.add(game);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+			GameMapper mapper = session.getMapper(GameMapper.class);
+			list = mapper.getGameList();
 		} finally {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				statement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			session.close();
 		}
 		
 		return list ;
