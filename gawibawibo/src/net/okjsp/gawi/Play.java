@@ -14,9 +14,17 @@ public class Play {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		load();
 		while (game()) {
 			System.out.println("====\n\n\n====");
 		}
+	}
+
+	private static void load() {
+		list = dao.load();
+		System.out.println(list.size() + " records loaded.");
+		showStat();
+		System.out.println("====");
 	}
 
 	public static boolean game() {

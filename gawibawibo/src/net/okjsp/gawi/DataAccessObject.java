@@ -3,8 +3,10 @@ package net.okjsp.gawi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class DataAccessObject {
 
@@ -59,5 +61,36 @@ public class DataAccessObject {
 			e.printStackTrace();
 		}
 		return conn;
+	}
+
+	public ArrayList<Game> load() {
+		ArrayList<Game> list = new ArrayList<Game>();
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String sql = "select * from game order by id";
+			statement = conn.prepareStatement(sql);
+			rs = statement.executeQuery();
+			while(rs.next()) {
+				Game game = new Game();
+				game.setChoice(rs.getInt("choice"));
+				game.setComputerChoice(rs.getInt("computerChoice"));
+				game.setJudgement(rs.getString("judgement"));
+				game.setDatetime(rs.getTimestamp("datetime"));
+				
+				list.add(game);
+			}
+			rs.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list ;
 	}
 }

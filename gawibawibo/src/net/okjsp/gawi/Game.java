@@ -16,6 +16,9 @@ public class Game {
 		this.datetime = datetime;
 	}
 
+	public Game() {
+	}
+
 	public int getChoice() {
 		return choice;
 	}
