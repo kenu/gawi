@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Play {
 
-	private static ArrayList<Game> list;
+	private static ArrayList<Game> list = new ArrayList<Game>();
 
 	/**
 	 * @param args
@@ -43,15 +43,36 @@ public class Play {
 		String judgement = judge(choice, computerChoice);
 
 		System.out.println("----\n" + judgement);
-		
+
 		save(choice, computerChoice, judgement);
-		
+
+		showStat();
+
 		return true;
+	}
+
+	private static void showStat() {
+		System.out.println("\n----\ntotal: " + list.size());
+		int win = 0;
+		int even = 0;
+		int lose = 0;
+		for (Game game : list) {
+			if (game.getJudgement().equals("비겼습니다.")) {
+				even = even + 1;
+			} else if (game.getJudgement().equals("당신이 이겼습니다.")) {
+				win = win + 1;
+			} else {
+				lose = lose + 1;
+			}
+		}
+		int rate = (win * 100 / list.size());
+		System.out.println(win + "승 " + even + "무 " + lose + "패");
+		System.out.println("승률: " + rate + "%");
 	}
 
 	private static void save(int choice, int computerChoice, String judgement) {
 		Date datetime = new Date();
-		Game game = new Game(choice, computerChoice, judgement, datetime );
+		Game game = new Game(choice, computerChoice, judgement, datetime);
 		list.add(game);
 	}
 
