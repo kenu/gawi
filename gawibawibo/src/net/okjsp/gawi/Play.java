@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Play {
 
-	private static ArrayList<Game> list = new ArrayList<Game>();
+	private static ArrayList<Game> list;
 	static DataAccessObject dao = new DataAccessObject();
 
 	/**

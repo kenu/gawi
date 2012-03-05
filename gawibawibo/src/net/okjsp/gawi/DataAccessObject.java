@@ -29,20 +29,19 @@ public class DataAccessObject {
 			result = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-
-		// close statement
-		try {
-			statement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		// close connection()
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			// close statement
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			// close connection()
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return result;
@@ -83,13 +82,25 @@ public class DataAccessObject {
 				
 				list.add(game);
 			}
-			rs.close();
-			statement.close();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		return list ;
 	}
