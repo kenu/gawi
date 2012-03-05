@@ -1,9 +1,13 @@
 package net.okjsp.gawi;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
+
+	private static ArrayList<Game> list;
 
 	/**
 	 * @param args
@@ -39,8 +43,16 @@ public class Play {
 		String judgement = judge(choice, computerChoice);
 
 		System.out.println("----\n" + judgement);
-
+		
+		save(choice, computerChoice, judgement);
+		
 		return true;
+	}
+
+	private static void save(int choice, int computerChoice, String judgement) {
+		Date datetime = new Date();
+		Game game = new Game(choice, computerChoice, judgement, datetime );
+		list.add(game);
 	}
 
 	public static String judge(int choice, int computerChoice) {
