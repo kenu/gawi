@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <environments default="development">
-    <environment id="development">
+  <environments default="production">
+    <environment id="production">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>

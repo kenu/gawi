@@ -11,4 +11,12 @@
 			datetime
 		FROM game
 	</select>
+	
+	<insert id="insertGame" parameterType="net.okjsp.gawi.Game" useGeneratedKeys="true"
+    keyProperty="id">
+	insert into game 
+		(choice, computerChoice, judgement, datetime) 
+		values 
+		(#{choice}, #{computerChoice}, #{judgement}, #{datetime})
+	</insert>
 </mapper>

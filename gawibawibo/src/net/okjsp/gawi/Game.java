@@ -1,9 +1,12 @@
 package net.okjsp.gawi;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Game {
+public class Game implements Serializable  {
 
+	private static final long serialVersionUID = 4548956648783490790L;
+	private int id;
 	private int choice;
 	private int computerChoice;
 	private String judgement;
@@ -17,6 +20,14 @@ public class Game {
 	}
 
 	public Game() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getChoice() {
