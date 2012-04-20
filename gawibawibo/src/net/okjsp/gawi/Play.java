@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Play {
 
+	public static String[] items = { "가위", "바위", "보" };
 	private static List<Game> list;
 	static DataAccessObject dao = new DataAccessObject();
 
@@ -28,7 +29,6 @@ public class Play {
 	}
 
 	public static boolean game() {
-		String[] items = { "가위", "바위", "보" };
 		for (int i = 0; i < items.length; i++) {
 			System.out.print(i + ":" + items[i] + " ");
 		}
@@ -44,7 +44,7 @@ public class Play {
 			return false;
 		}
 
-		int computerChoice = new Random(System.nanoTime()).nextInt(3);
+		int computerChoice = getComputerChoice();
 
 		System.out.println("----\n" + "당신: " + items[choice] + "\n컴퓨터: "
 				+ items[computerChoice]);
@@ -58,6 +58,10 @@ public class Play {
 		showStat();
 
 		return true;
+	}
+
+	public static int getComputerChoice() {
+		return new Random(System.nanoTime()).nextInt(3);
 	}
 
 	private static void showStat() {
