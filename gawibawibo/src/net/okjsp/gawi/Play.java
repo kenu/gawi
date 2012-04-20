@@ -66,9 +66,9 @@ public class Play {
 
 	private static void showStat() {
 		System.out.println("\n----\ntotal: " + list.size());
-		int win = 0;
-		int even = 0;
-		int lose = 0;
+		win = 0;
+		even = 0;
+		lose = 0;
 		for (Game game : list) {
 			if (game.getJudgement().equals("비겼습니다.")) {
 				even = even + 1;
@@ -87,10 +87,34 @@ public class Play {
 		System.out.println("승률: " + rate + "%");
 	}
 
-	private static void save(int choice, int computerChoice, String judgement) {
+	private static int win;
+	private static int even;
+	private static int lose;
+	
+	public static int getTotal() {
+		return (list == null) ? 0 : list.size();
+	}
+	public static int getWin() {
+		return win;
+	}
+	public static int getEven() {
+		return even;
+	}
+	public static int getLose() {
+		return lose;
+	}
+	public static int getRate() {
+		return (win * 100 / getTotal());
+	}
+
+	public static void save(int choice, int computerChoice, String judgement) {
 		Date datetime = new Date();
 		Game game = new Game(choice, computerChoice, judgement, datetime);
-		list.add(game);
+		if (list == null) {
+			load();
+		} else {
+			list.add(game);
+		}
 		dao.save(game);
 	}
 

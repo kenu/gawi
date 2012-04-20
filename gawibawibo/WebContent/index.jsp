@@ -8,6 +8,8 @@
 <title>가위 바위 보</title>
 <style type="text/css">
 * {text-align: center;}
+#judgement {background-color: #dde;}
+form {border: 1px solid #ddd;}
 </style>
 </head>
 <body>
@@ -16,13 +18,20 @@
 	if (schoice != null) {
 		int choice = Integer.parseInt(schoice);
 		int computerChoice = Play.getComputerChoice();
+		String judgement = Play.judge(choice, computerChoice);
+		Play.save(choice, computerChoice, judgement);
 %>
 ----
 <strong>당신: <%= Play.items[choice] %></strong>
 컴퓨터: <%= Play.items[computerChoice] %>
 ----
+<div id="judgement">
+<%= judgement %>
+</div>
 <div>
-<%= Play.judge(choice, computerChoice) %>
+TOTAL: <%= Play.getTotal() %>
+(<%= Play.getWin() %>승 <%= Play.getEven() %>무 <%= Play.getLose() %>패
+승률: <%= Play.getRate() %>%)
 </div>
 <%
 	}
