@@ -6,6 +6,9 @@
 <head>
 <meta charset="utf-8">
 <title>가위 바위 보</title>
+<style type="text/css">
+* {text-align: center;}
+</style>
 </head>
 <body>
 <%
@@ -15,7 +18,7 @@
 		int computerChoice = Play.getComputerChoice();
 %>
 ----
-당신: <%= Play.items[choice] %>
+<strong>당신: <%= Play.items[choice] %></strong>
 컴퓨터: <%= Play.items[computerChoice] %>
 ----
 <div>
