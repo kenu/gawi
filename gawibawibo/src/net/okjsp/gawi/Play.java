@@ -74,6 +74,10 @@ public class Play {
 				lose = lose + 1;
 			}
 		}
+		if (list.size() == 0) {
+			System.out.println("전적이 없습니다.");
+			return;
+		}
 		int rate = (win * 100 / list.size());
 		System.out.println(win + "승 " + even + "무 " + lose + "패");
 		System.out.println("승률: " + rate + "%");
