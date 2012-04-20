@@ -21,7 +21,7 @@ public class Play {
 		}
 	}
 
-	private static void load() {
+	public static void load() {
 		list = dao.load();
 		System.out.println(list.size() + " records loaded.");
 		showStat();

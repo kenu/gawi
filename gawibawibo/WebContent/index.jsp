@@ -20,6 +20,7 @@ form {border: 1px solid #ddd;}
 		int computerChoice = Play.getComputerChoice();
 		String judgement = Play.judge(choice, computerChoice);
 		Play.save(choice, computerChoice, judgement);
+		Play.load();
 %>
 ----
 <strong>당신: <%= Play.items[choice] %></strong>
