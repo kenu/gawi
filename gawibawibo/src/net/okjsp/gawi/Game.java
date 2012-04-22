@@ -62,4 +62,20 @@ public class Game implements Serializable  {
 		this.datetime = datetime;
 	}
 
+	public int getJudge() {
+		int judgement;
+
+		if (this.choice == this.computerChoice) {
+			judgement = 0;
+		} else {
+			int diff = this.computerChoice - this.choice;
+			if ((diff == 1) || (diff == -2)) {
+				judgement = -1;
+			} else {
+				judgement = 1;
+			}
+		}
+		return judgement;
+	}
+
 }

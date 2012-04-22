@@ -70,9 +70,9 @@ public class Play {
 		even = 0;
 		lose = 0;
 		for (Game game : list) {
-			if (game.getJudgement().equals("비겼습니다.")) {
+			if (game.getJudge() == 0) {
 				even = even + 1;
-			} else if (game.getJudgement().equals("당신이 이겼습니다.")) {
+			} else if (game.getJudge() == 1) {
 				win = win + 1;
 			} else {
 				lose = lose + 1;
