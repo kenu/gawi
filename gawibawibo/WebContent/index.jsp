@@ -6,11 +6,23 @@
 <head>
 <meta charset="utf-8">
 <title>가위 바위 보</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <style type="text/css">
 * {text-align: center;}
 #judgement {background-color: #dde;}
 form {border: 1px solid #ddd;}
 </style>
+<script type="text/javascript">
+$(function(){
+	var formSubmit = function(){
+		if (confirm('내실건가요?')) {
+			$("form")[0].submit();
+		}
+	};
+	$("label").click(formSubmit);
+	$("input[type=radio]").click(formSubmit);
+});
+</script>
 </head>
 <body>
 <%
@@ -42,7 +54,6 @@ TOTAL: <%= Play.getTotal() %>
 <input type="radio" name="choice" value="0" id="0"> <label for="0">가위</label>
 <input type="radio" name="choice" value="1" id="1"> <label for="1">바위</label>
 <input type="radio" name="choice" value="2" id="2"> <label for="2">보</label>
-<input type="submit" value="내기">
 </form>
 </body>
 </html>
