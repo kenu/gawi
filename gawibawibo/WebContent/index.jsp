@@ -20,7 +20,6 @@ form {border: 1px solid #ddd;}
 		int computerChoice = Play.getComputerChoice();
 		String judgement = Play.judge(choice, computerChoice);
 		Play.save(choice, computerChoice, judgement);
-		Play.load();
 %>
 ----
 <strong>당신: <%= Play.items[choice] %></strong>
@@ -29,14 +28,10 @@ form {border: 1px solid #ddd;}
 <div id="judgement">
 <%= judgement %>
 </div>
-<div>
-TOTAL: <%= Play.getTotal() %>
-(<%= Play.getWin() %>승 <%= Play.getEven() %>무 <%= Play.getLose() %>패
-승률: <%= Play.getRate() %>%)
-</div>
 <%
 	}
 %>
+<jsp:include page="stat.jsp"></jsp:include>
 <form>
 선택하세요:
 <input type="radio" name="choice" value="0" id="0"> <label for="0">가위</label>
