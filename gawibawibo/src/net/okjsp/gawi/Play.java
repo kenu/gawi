@@ -7,28 +7,29 @@ import java.util.Scanner;
 
 public class Play {
 
-	public static String[] items = { "가위", "바위", "보" };
-	private static List<Game> list;
-	static DataAccessObject dao = new DataAccessObject();
+	public String[] items = { "가위", "바위", "보" };
+	private List<Game> list;
+	DataAccessObject dao = new DataAccessObject();
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		load();
-		while (game()) {
+	static public void main(String[] args) {
+		Play play = new Play();
+		play.load();
+		while (play.game()) {
 			System.out.println("====\n\n\n====");
 		}
 	}
 
-	public static void load() {
+	public void load() {
 		list = dao.load();
 		System.out.println(list.size() + " records loaded.");
 		showStat();
 		System.out.println("====");
 	}
 
-	public static boolean game() {
+	public boolean game() {
 		for (int i = 0; i < items.length; i++) {
 			System.out.print(i + ":" + items[i] + " ");
 		}
@@ -60,11 +61,11 @@ public class Play {
 		return true;
 	}
 
-	public static int getComputerChoice() {
+	public int getComputerChoice() {
 		return new Random(System.nanoTime()).nextInt(3);
 	}
 
-	private static void showStat() {
+	private void showStat() {
 		System.out.println("\n----\ntotal: " + list.size());
 		win = 0;
 		even = 0;
@@ -87,27 +88,27 @@ public class Play {
 		System.out.println("승률: " + rate + "%");
 	}
 
-	private static int win;
-	private static int even;
-	private static int lose;
+	private int win;
+	private int even;
+	private int lose;
 	
-	public static int getTotal() {
+	public int getTotal() {
 		return (list == null) ? 0 : list.size();
 	}
-	public static int getWin() {
+	public int getWin() {
 		return win;
 	}
-	public static int getEven() {
+	public int getEven() {
 		return even;
 	}
-	public static int getLose() {
+	public int getLose() {
 		return lose;
 	}
-	public static int getRate() {
+	public int getRate() {
 		return (win * 100 / getTotal());
 	}
 
-	public static void save(int choice, int computerChoice, String judgement) {
+	public void save(int choice, int computerChoice, String judgement) {
 		Date datetime = new Date();
 		Game game = new Game(choice, computerChoice, judgement, datetime);
 		if (list == null) {
@@ -118,7 +119,7 @@ public class Play {
 		dao.save(game);
 	}
 
-	public static String judge(int choice, int computerChoice) {
+	public String judge(int choice, int computerChoice) {
 		String judgement;
 
 		if (choice == computerChoice) {

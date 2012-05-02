@@ -1,10 +1,11 @@
 <%@page pageEncoding="utf-8" %>
 <%@page import="net.okjsp.gawi.Play"%>
 <%
-	Play.load();
+	Play play = new Play();
+	play.load();
 %>
 <div>
-TOTAL: <%= Play.getTotal() %>
-(<%= Play.getWin() %>승 <%= Play.getEven() %>무 <%= Play.getLose() %>패
-승률: <%= Play.getRate() %>%)
+TOTAL: <%= play.getTotal() %>
+(<%= play.getWin() %>승 <%= play.getEven() %>무 <%= play.getLose() %>패
+승률: <%= play.getRate() %>%)
 </div>

@@ -14,16 +14,17 @@ form {border: 1px solid #ddd;}
 </head>
 <body>
 <%
+	Play play = new Play();
 	String schoice = request.getParameter("choice");
 	if (schoice != null) {
 		int choice = Integer.parseInt(schoice);
-		int computerChoice = Play.getComputerChoice();
-		String judgement = Play.judge(choice, computerChoice);
-		Play.save(choice, computerChoice, judgement);
+		int computerChoice = play.getComputerChoice();
+		String judgement = play.judge(choice, computerChoice);
+		play.save(choice, computerChoice, judgement);
 %>
 ----
-<strong>당신: <%= Play.items[choice] %></strong>
-컴퓨터: <%= Play.items[computerChoice] %>
+<strong>당신: <%= play.items[choice] %></strong>
+컴퓨터: <%= play.items[computerChoice] %>
 ----
 <div id="judgement">
 <%= judgement %>
