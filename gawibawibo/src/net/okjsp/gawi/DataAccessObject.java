@@ -24,7 +24,7 @@ public class DataAccessObject {
 		}
 	}
 
-	public int save(Game game) {
+	public static int save(Game game) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			GameMapper mapper = session.getMapper(GameMapper.class);
@@ -36,7 +36,7 @@ public class DataAccessObject {
 		return 0;
 	}
 
-	public List<Game> load() {
+	public static List<Game> load() {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Game> list = null;
 		try {
