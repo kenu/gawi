@@ -9,6 +9,7 @@ public class Play {
 
 	public String[] items = { "가위", "바위", "보" };
 	private List<Game> list;
+	DataAccessObject dao = new DataAccessObject();
 
 	/**
 	 * @param args
@@ -22,7 +23,7 @@ public class Play {
 	}
 
 	public void load() {
-		list = DataAccessObject.load();
+		list = dao.load();
 		System.out.println(list.size() + " records loaded.");
 		showStat();
 		System.out.println("====");
@@ -115,7 +116,7 @@ public class Play {
 		} else {
 			list.add(game);
 		}
-		DataAccessObject.save(game);
+		dao.save(game);
 	}
 
 	public String judge(int choice, int computerChoice) {
