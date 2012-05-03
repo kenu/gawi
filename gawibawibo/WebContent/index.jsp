@@ -16,10 +16,9 @@ form {border: 1px solid #ddd;}
 <jsp:include page="stat.jsp"></jsp:include>
 <form method="post">
 선택하세요:
-<input type="radio" name="choice" value="0" id="0"> <label for="0">가위</label>
-<input type="radio" name="choice" value="1" id="1"> <label for="1">바위</label>
-<input type="radio" name="choice" value="2" id="2"> <label for="2">보</label>
-<input type="submit" value="내기">
+<button name="choice" value="0">가위</button>
+<button name="choice" value="1">바위</button>
+<button name="choice" value="2">보</button>
 </form>
 </body>
 </html>
