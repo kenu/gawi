@@ -5,11 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>가위 바위 보</title>
-<style type="text/css">
-* {text-align: center;}
-#judgement {background-color: #dde;}
-form {border: 1px solid #ddd;}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <jsp:include page="query.jsp"></jsp:include>
