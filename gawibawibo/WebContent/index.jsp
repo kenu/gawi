@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="query.jsp"></jsp:include>
 <jsp:include page="stat.jsp"></jsp:include>
-<form method="post">
+<form method="post" onsubmit="return false">
 선택하세요:
 <button name="choice" value="0">가위</button>
 <button name="choice" value="1">바위</button>
