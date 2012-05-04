@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
+var html5able = (typeof Audio !== "undefined");
 var send = function(e) {
-	snd.play();
+	if (html5able) {
+		snd.play();
+	}
 
 	$.post('query.jsp', { choice: this.value })
 	 .success(function(data) {
@@ -17,10 +20,14 @@ var send = function(e) {
 	  });
 };
 
-var snd = new Audio("snd/beep-03.wav"); 
-// sound from: http://www.mediacollege.com/downloads/sound-effects/beep/
+var snd;
 
 $(function(){
+	if (html5able) {
+		snd = new Audio("snd/beep-03.wav"); 
+	}
+	// sound from: http://www.mediacollege.com/downloads/sound-effects/beep/
+
 	$('form').bind('submit', function(e) {return false;});
 	$('button').click(send);
 });
