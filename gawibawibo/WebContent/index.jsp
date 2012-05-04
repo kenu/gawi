@@ -22,8 +22,9 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="result"></div>
+<div id="result">
 <jsp:include page="stat.jsp"></jsp:include>
+</div>
 <form method="post">
 선택하세요:
 <button name="choice" value="0">가위</button>
