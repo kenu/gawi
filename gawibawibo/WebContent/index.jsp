@@ -9,11 +9,16 @@
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 var send = function(e) {
+	snd.play();
+
 	$.post('query.jsp', { choice: this.value })
 	 .success(function(data) {
 		 $('#result').html(data); 
 	  });
 };
+
+var snd = new Audio("snd/beep-03.wav"); 
+// sound from: http://www.mediacollege.com/downloads/sound-effects/beep/
 
 $(function(){
 	$('form').bind('submit', function(e) {return false;});
