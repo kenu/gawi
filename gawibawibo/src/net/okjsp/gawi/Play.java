@@ -105,6 +105,7 @@ public class Play {
 		return lose;
 	}
 	public int getRate() {
+		if (getTotal() == 0) return 0;
 		return (win * 100 / getTotal());
 	}
 
