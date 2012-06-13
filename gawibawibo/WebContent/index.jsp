@@ -20,18 +20,22 @@ var send = function(e) {
 		 var message = "---- <strong>"+data.p1.name+": "+data.p1.choice+"</strong>"
 		 +data.p2.name+": "+data.p2.choice+" ----";
 		 $('#result').html(message).append($("<div>").attr("id", "judgement").html(data.judgement));
-		 showStat();
+		 showMessage(data.stat);
 	  });
 };
 
+var showMessage = function(data) {
+	var message = "TOTAL: "+data.total+" ("+data.win+"승 "
+	+data.even+"무 "
+	+data.lose+"패 승률: "
+	+data.rate+")";
+	$("#stat").html($("<div>").html(message));
+};
+
 var showStat = function() {
-	$.get("statJSON.jsp")
+	$.getJSON("statJSON.jsp")
 	.success(function(data) {
-		var message = "TOTAL: "+data.total+" ("+data.win+"승 "
-				+data.even+"무 "
-				+data.lose+"패 승률: "
-				+data.rate+")";
-		$("#stat").html($("<div>").html(message));
+		showMessage(data);
 	});
 };
 

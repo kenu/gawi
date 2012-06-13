@@ -104,9 +104,9 @@ public class Play {
 	public int getLose() {
 		return lose;
 	}
-	public int getRate() {
+	public double getRate() {
 		if (getTotal() == 0) return 0;
-		return (win * 100 / getTotal());
+		return (win * 10000 / getTotal()) / 100;
 	}
 
 	public void save(int choice, int computerChoice, String judgement) {
@@ -118,6 +118,7 @@ public class Play {
 			list.add(game);
 		}
 		dao.save(game);
+		load();
 	}
 
 	public String judge(int choice, int computerChoice) {

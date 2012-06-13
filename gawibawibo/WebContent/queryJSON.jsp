@@ -9,7 +9,12 @@
 		play.save(choice, computerChoice, judgement);
 %>{"p1":{"name":"당신", "choice":"<%= play.items[choice] %>"},
  "p2":{"name":"컴퓨터", "choice":"<%= play.items[computerChoice] %>"},
-"judgement" : "<%= judgement %>"}
-<%
+"judgement" : "<%= judgement %>",
+"stat" : {"total":<%=play.getTotal()%>, 
+"win":<%=play.getWin()%>, 
+"even":<%=play.getEven()%>, 
+"lose": <%=play.getLose()%>, 
+"rate": "<%=play.getRate()%>%"}
+}<%
 	}
 %>
