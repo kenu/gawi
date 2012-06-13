@@ -31,7 +31,27 @@ public class Stat {
 		if (getTotal() == 0) return 0d;
 		return win * 10000 / getTotal() / 100.0d; 
 	}
+	public void calcStats(List<StatTemp> loadStat) {
+		for (StatTemp statTemp : loadStat) {
+			switch (statTemp.judgement.length()) {
+			case 10:
+				win = statTemp.count;
+				break;
+			case 11:
+				lose = statTemp.count;
+				break;
+			default:
+				even = statTemp.count;
+				break;
+			}
+		}
+	}
+
 	
+	/**
+	 * @param list
+	 * @deprecated
+	 */
 	public void calcStat(List<Game> list) {
 		clear();
 		for (Game game : list) {
@@ -49,5 +69,4 @@ public class Stat {
 		even = 0;
 		lose = 0;
 	}
-
 }

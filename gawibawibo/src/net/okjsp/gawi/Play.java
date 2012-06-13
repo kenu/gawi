@@ -17,16 +17,15 @@ public class Play {
 	 */
 	static public void main(String[] args) {
 		Play play = new Play();
-		play.load();
+		play.loadStat();
 		while (play.game()) {
 			System.out.println("====\n\n\n====");
 		}
 	}
 
-	public void load() {
-		list = dao.load();
-		stat.calcStat(list);
-		System.out.println(list.size() + " records loaded.");
+	public void loadStat() {
+		stat.calcStats(dao.loadStat());
+		System.out.println(stat.getTotal() + " records loaded.");
 	}
 
 	public boolean game() {
@@ -66,9 +65,9 @@ public class Play {
 	}
 
 	private void showStat() {
-		stat.calcStat(list);
-		System.out.println("\n----\ntotal: " + list.size());
-		if (list.size() == 0) {
+		loadStat();
+		System.out.println("\n----\ntotal: " + stat.getTotal());
+		if (stat.getTotal() == 0) {
 			System.out.println("전적이 없습니다.");
 			return;
 		}
@@ -87,7 +86,7 @@ public class Play {
 			list.add(game);
 		}
 		dao.save(game);
-		load();
+		loadStat();
 	}
 
 	public String judge(int choice, int computerChoice) {

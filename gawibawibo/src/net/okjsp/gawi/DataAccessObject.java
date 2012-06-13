@@ -36,6 +36,10 @@ public class DataAccessObject {
 		return 0;
 	}
 
+	/**
+	 * @return
+	 * @deprecated
+	 */
 	public List<Game> load() {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Game> list = null;
@@ -48,4 +52,18 @@ public class DataAccessObject {
 
 		return list;
 	}
+
+	public List<StatTemp> loadStat() {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<StatTemp> list = null;
+		try {
+			GameMapper mapper = session.getMapper(GameMapper.class);
+			list = mapper.getGameStat();
+		} finally {
+			session.close();
+		}
+		
+		return list;
+	}
+	
 }

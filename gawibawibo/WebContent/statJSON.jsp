@@ -3,7 +3,7 @@
 <%@page pageEncoding="utf-8" %>
 <%
 	Play play = new Play();
-	play.load();
+	play.loadStat();
 	Stat stat = play.getStat();
 %>{"total":<%=stat.getTotal()%>, 
 "win":<%=stat.getWin()%>, 

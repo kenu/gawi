@@ -11,6 +11,12 @@
 			datetime
 		FROM game
 	</select>
+
+	<select id="getGameStat" resultType="net.okjsp.gawi.StatTemp">
+SELECT judgement, count(*) count
+FROM game
+GROUP BY judgement;
+	</select>
 	
 	<insert id="insertGame" parameterType="net.okjsp.gawi.Game" useGeneratedKeys="true"
     keyProperty="id">
