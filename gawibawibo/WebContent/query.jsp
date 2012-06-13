@@ -20,4 +20,3 @@
 <%
 	}
 %>
-<jsp:include page="stat.jsp"></jsp:include>

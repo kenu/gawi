@@ -7,7 +7,7 @@
 <title>statJSONTest</title>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-var jqxhr = $.getJSON('./statJSON.jsp', function(j){alert("success"+j);})
+var jqxhr = $.getJSON('./statJSON.jsp', function(j){alert("success"+JSON.stringify(j));})
 ;
 </script>
 </head>

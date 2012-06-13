@@ -16,8 +16,20 @@ var send = function(e) {
 
 	$.post('query.jsp', { choice: this.value })
 	 .success(function(data) {
-		 $('#result').html(data); 
+		 $('#result').html(data);
+		 showStat();
 	  });
+};
+
+var showStat = function() {
+	$.get("statJSON.jsp")
+	.success(function(data) {
+		var message = "TOTAL: "+data.total+" ("+data.win+"승 "
+				+data.even+"무 "
+				+data.lose+"패 승률: "
+				+data.rate+")";
+		$("#stat").html($("<div>").html(message));
+	});
 };
 
 var snd;
@@ -30,13 +42,14 @@ $(function(){
 
 	$('form').bind('submit', function(e) {return false;});
 	$('button').click(send);
+	
+	showStat();
 });
 </script>
 </head>
 <body>
-<div id="result">
-<jsp:include page="stat.jsp"></jsp:include>
-</div>
+<div id="result"></div>
+<div id="stat"></div>
 <form method="post">
 선택하세요:
 <button name="choice" value="0">가위</button>
