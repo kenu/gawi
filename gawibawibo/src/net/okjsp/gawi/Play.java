@@ -106,7 +106,7 @@ public class Play {
 	}
 	public double getRate() {
 		if (getTotal() == 0) return 0;
-		return (win * 10000 / getTotal()) / 100;
+		return (win * 10000 / getTotal()) / 100.0d;
 	}
 
 	public void save(int choice, int computerChoice, String judgement) {
