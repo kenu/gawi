@@ -14,9 +14,12 @@ var send = function(e) {
 		snd.play();
 	}
 
-	$.post('query.jsp', { choice: this.value })
-	 .success(function(data) {
-		 $('#result').html(data);
+	$.post('queryJSON.jsp', { choice: this.value })
+	 .success(function(d) {
+		 var data = JSON.parse(d);
+		 var message = "---- <strong>"+data.p1.name+": "+data.p1.choice+"</strong>"
+		 +data.p2.name+": "+data.p2.choice+" ----";
+		 $('#result').html(message).append($("<div>").attr("id", "judgement").html(data.judgement));
 		 showStat();
 	  });
 };
