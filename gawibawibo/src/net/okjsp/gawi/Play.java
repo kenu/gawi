@@ -10,6 +10,7 @@ public class Play {
 	public String[] items = { "가위", "바위", "보" };
 	private List<Game> list;
 	DataAccessObject dao = new DataAccessObject();
+	Stat stat = new Stat();
 
 	/**
 	 * @param args
@@ -24,9 +25,8 @@ public class Play {
 
 	public void load() {
 		list = dao.load();
+		stat.calcStat(list);
 		System.out.println(list.size() + " records loaded.");
-		showStat();
-		System.out.println("====");
 	}
 
 	public boolean game() {
@@ -66,55 +66,24 @@ public class Play {
 	}
 
 	private void showStat() {
+		stat.calcStat(list);
 		System.out.println("\n----\ntotal: " + list.size());
-		win = 0;
-		even = 0;
-		lose = 0;
-		for (Game game : list) {
-			if (game.getJudge() == 0) {
-				even = even + 1;
-			} else if (game.getJudge() == 1) {
-				win = win + 1;
-			} else {
-				lose = lose + 1;
-			}
-		}
 		if (list.size() == 0) {
 			System.out.println("전적이 없습니다.");
 			return;
 		}
-		int rate = (win * 100 / list.size());
-		System.out.println(win + "승 " + even + "무 " + lose + "패");
-		System.out.println("승률: " + rate + "%");
+		System.out.println(stat.getWin() + "승 " + stat.getEven() + "무 " + stat.getLose() + "패");
+		System.out.println("승률: " + stat.getRate() + "%");
 	}
-
-	private int win;
-	private int even;
-	private int lose;
 	
-	public int getTotal() {
-		return (list == null) ? 0 : list.size();
-	}
-	public int getWin() {
-		return win;
-	}
-	public int getEven() {
-		return even;
-	}
-	public int getLose() {
-		return lose;
-	}
-	public double getRate() {
-		if (getTotal() == 0) return 0;
-		return (win * 10000 / getTotal()) / 100.0d;
+	public Stat getStat() {
+		return stat;
 	}
 
 	public void save(int choice, int computerChoice, String judgement) {
 		Date datetime = new Date();
 		Game game = new Game(choice, computerChoice, judgement, datetime);
-		if (list == null) {
-			load();
-		} else {
+		if (list != null) {
 			list.add(game);
 		}
 		dao.save(game);
@@ -136,4 +105,5 @@ public class Play {
 		}
 		return judgement;
 	}
+	
 }
