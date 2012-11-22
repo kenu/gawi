@@ -1,7 +1,11 @@
-<%@page import="net.okjsp.gawi.Play"%>
-<%@page import="net.okjsp.gawi.Stat"%>
-<%@page pageEncoding="utf-8" %>
-<%
+<%@page import="net.okjsp.gawi.Play"
+%><%@page import="net.okjsp.gawi.Stat"
+%><%@page pageEncoding="utf-8" %><%
+
+	String callback = request.getParameter("callback");
+    if (callback != null) {
+    	out.print(callback + "(");
+    }
 	Play play = new Play();
 	play.loadStat();
 	Stat stat = play.getStat();
@@ -9,4 +13,8 @@
 "win":<%=stat.getWin()%>, 
 "even":<%=stat.getEven()%>, 
 "lose": <%=stat.getLose()%>, 
-"rate": "<%=stat.getRate()%>%"}
+"rate": "<%=stat.getRate()%>%"}<%
+    if (callback != null) {
+    	out.print(")");
+    }
+%>
