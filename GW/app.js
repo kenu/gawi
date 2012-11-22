@@ -11,7 +11,7 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'Ext.TitleBar',
-        'Ext.Ajax'
+        'Ext.util.JSONP'
     ],
 
     views: [],
@@ -38,14 +38,13 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
         
+        var domain = 'http://127.0.0.1:8080';
         var showStat = function() {
         	
-        	Ext.Ajax.request({
-        		url: '/gawi/statJSON.jsp',
-        	    success: function(response){
-        	        var text = response.responseText;
-
-        	        var r = JSON.parse(text);
+        	Ext.data.JsonP.request({
+        		url: domain + '/gawi/statJSON.jsp',
+        		callbackKey: 'callback',
+        		callback: function(response, r){
 
         	        var message = r.win + '승 '+
         	        r.even + '무 ' + 
@@ -59,13 +58,13 @@ Ext.application({
         
         var play = function(btn, e) {
         	
-        	Ext.Ajax.request({
-        		url: '/gawi/queryJSON.jsp',
+        	Ext.data.JsonP.request({
+        		url: domain + '/gawi/queryJSON.jsp',
         		params: {
         			choice: btn.value
         		},
-        		success: function(response, opts){
-        	        var result = Ext.decode(response.responseText);
+        		callbackKey: 'callback',
+        		callback: function(response, result){
         	        var r = result.stat;
         			var message = '---- 당신: ' + result.p1.choice +
         			    ' 컴퓨터: '+ result.p2.choice + ' ----<br />' +
@@ -75,10 +74,7 @@ Ext.application({
 	        			r.lose + '패 승률:' + r.rate;
         			
         			Ext.getCmp('result').setHtml(message);
-        		},
-        	    failure: function(response, opts) {
-        	        console.log('server-side failure with status code ' + response.status);
-        	    }
+        		}
         	
         	});
         };
