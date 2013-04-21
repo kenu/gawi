@@ -12,7 +12,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,7 +22,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class GawiActivity extends Activity implements OnClickListener {
 	
@@ -74,11 +72,11 @@ public class GawiActivity extends Activity implements OnClickListener {
 			message.append("\n" + p2.getString("name") + ":" + p2.getString("choice"));
 			
 			JSONObject stat = jsonArray.getJSONObject("stat");
-			message.append("\n\n" + stat.getString("win") +"½Â ");
-			message.append(stat.getString("even") +"¹« ");
-			message.append(stat.getString("lose") +"ÆÐ ");
-			message.append("\nÀüÃ¼: " + stat.getString("total"));
-			message.append("\n½Â·ü: " + stat.getString("rate"));
+			message.append("\n\n" + stat.getString("win") +"-win, ");
+			message.append(stat.getString("even") +"-draw, ");
+			message.append(stat.getString("lose") +"-lose ");
+			message.append("\nTotal: " + stat.getString("total"));
+			message.append("\nRate: " + stat.getString("rate"));
 			
 			((TextView)findViewById(R.id.textView2)).setText(message);
 		} catch (JSONException e) {
