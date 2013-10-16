@@ -4,7 +4,7 @@
             description
     </description>
 	<property name="app.name" value="gawi" />
-	<property name="catalina.home" value="/java/apache-tomcat-7.0.23" />
+	<property name="catalina.home" value="/java/apache-tomcat-7.0.42" />
 	<path id="compile.classpath">
 		<fileset dir="${catalina.home}/lib">
 			<include name="*.jar" />
@@ -19,7 +19,11 @@
           target: build              
          ================================= -->
 	<target name="build" depends="clean" description="build project">
-		<javac encoding="utf-8" srcdir="src" destdir="build/WEB-INF/classes" classpathref="compile.classpath" debug="on">
+		<javac encoding="utf-8" srcdir="src" 
+			destdir="build/WEB-INF/classes" 
+			classpathref="compile.classpath" 
+			target="1.6"
+			debug="on">
 			<include name="**/*" />
 			<exclude name="**/*Test*" />
 		</javac>

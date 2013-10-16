@@ -1,11 +1,7 @@
-select * from game;
-
-		
-	
+/* Setting */
 GRANT ALL PRIVILEGES ON *.* TO javauser@localhost
    IDENTIFIED BY 'javadude' WITH GRANT OPTION;
 create database javatest;
-use javatest;
 
 /*Table structure for table `game` */
 drop table javatest.game;
