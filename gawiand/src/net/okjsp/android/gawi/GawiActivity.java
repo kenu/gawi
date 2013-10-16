@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,21 +25,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class GawiActivity extends Activity implements OnClickListener {
-	
-	
+
 	/** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        Button btn1 = (Button)findViewById(R.id.button1);
-        Button btn2 = (Button)findViewById(R.id.button2);
-        Button btn3 = (Button)findViewById(R.id.button3);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		Button btn1 = (Button) findViewById(R.id.button1);
+		Button btn2 = (Button) findViewById(R.id.button2);
+		Button btn3 = (Button) findViewById(R.id.button3);
+		btn1.setOnClickListener(this);
+		btn2.setOnClickListener(this);
+		btn3.setOnClickListener(this);
+	}
 
 	@Override
 	public void onClick(View v) {
@@ -54,40 +54,70 @@ public class GawiActivity extends Activity implements OnClickListener {
 			choice = 2;
 			break;
 		}
-		Log.i("v", ""+choice);
-		
-		play(choice);
+		Log.i("v", "" + choice);
+
+		playLocal(choice);
+	}
+	String [] items = {"가위", "바위", "보"};
+
+	private void playLocal(int choice) {
+		Random random = new Random(System.currentTimeMillis());
+		int comChoice = random.nextInt(3);
+		String message = judge(choice, comChoice);
+		message += "\nYou: " + items[choice] +
+				"\nCom: " + items[comChoice] +
+				"\n"; 
+		((TextView) findViewById(R.id.textView2)).setText(message);
 	}
 
-	private void play(int choice) {
+	public String judge(int choice, int comChoice) {
+		String judgement;
+
+		if (choice == comChoice) {
+			judgement = "비겼습니다.";
+		} else {
+			int diff = comChoice - choice;
+			if ((diff == 1) || (diff == -2)) {
+				judgement = "컴퓨터가 이겼습니다.";
+			} else {
+				judgement = "당신이 이겼습니다.";
+			}
+		}
+		return judgement;
+	}
+
+	public void play(int choice) {
 		String json = readData(choice);
 		StringBuilder message = new StringBuilder();
 		try {
 			JSONObject jsonArray = new JSONObject(json);
-			((TextView)findViewById(R.id.textView1)).setText(jsonArray.getString("judgement"));
-			
+			((TextView) findViewById(R.id.textView1)).setText(jsonArray
+					.getString("judgement"));
+
 			JSONObject p1 = jsonArray.getJSONObject("p1");
 			JSONObject p2 = jsonArray.getJSONObject("p2");
 			message.append(p1.getString("name") + ":" + p1.getString("choice"));
-			message.append("\n" + p2.getString("name") + ":" + p2.getString("choice"));
-			
+			message.append("\n" + p2.getString("name") + ":"
+					+ p2.getString("choice"));
+
 			JSONObject stat = jsonArray.getJSONObject("stat");
-			message.append("\n\n" + stat.getString("win") +"-win, ");
-			message.append(stat.getString("even") +"-draw, ");
-			message.append(stat.getString("lose") +"-lose ");
+			message.append("\n\n" + stat.getString("win") + "-win, ");
+			message.append(stat.getString("even") + "-draw, ");
+			message.append(stat.getString("lose") + "-lose ");
 			message.append("\nTotal: " + stat.getString("total"));
 			message.append("\nRate: " + stat.getString("rate"));
-			
-			((TextView)findViewById(R.id.textView2)).setText(message);
+
+			((TextView) findViewById(R.id.textView2)).setText(message);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String readData(int choice) {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet("http://www.okjsp.pe.kr/gawi/queryJSON.jsp?choice="+choice);
+		HttpGet httpGet = new HttpGet(
+				"http://www.okjsp.pe.kr/gawi/queryJSON.jsp?choice=" + choice);
 		try {
 			HttpResponse response = client.execute(httpGet);
 			StatusLine statusLine = response.getStatusLine();
@@ -95,7 +125,8 @@ public class GawiActivity extends Activity implements OnClickListener {
 			if (statusCode == 200) {
 				HttpEntity entity = response.getEntity();
 				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(content));
 				String line;
 				while ((line = reader.readLine()) != null) {
 					builder.append(line);
