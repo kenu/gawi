@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">가위! 바위! 보!</string>
+    <string name="app_name">가위</string>
+    <string name="scissors">가위</string>
+    <string name="rock">바위</string>
+    <string name="paper">보</string>
+
+</resources>

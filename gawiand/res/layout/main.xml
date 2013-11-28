@@ -13,19 +13,19 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="가위" />
+        android:text="@string/scissors" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="바위" />
+        android:text="@string/rock" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="보" />
+        android:text="@string/paper" />
 
     <TextView
         android:id="@+id/textView1"

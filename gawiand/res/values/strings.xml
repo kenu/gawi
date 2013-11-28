@@ -3,5 +3,8 @@
 
     <string name="hello">Rock! Scissors! Paper!</string>
     <string name="app_name">Scissors</string>
-
+    <string name="scissors">Scissors</string>
+    <string name="rock">Rock</string>
+    <string name="paper">Paper</string>
+    
 </resources>
