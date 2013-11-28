@@ -58,9 +58,12 @@ public class GawiActivity extends Activity implements OnClickListener {
 
 		playLocal(choice);
 	}
-	String [] items = {"가위", "바위", "보"};
 
 	private void playLocal(int choice) {
+		String [] items = {getResources().getString(R.string.scissors),
+				getResources().getString(R.string.rock),
+				getResources().getString(R.string.paper)};
+
 		Random random = new Random(System.currentTimeMillis());
 		int comChoice = random.nextInt(3);
 		String message = judge(choice, comChoice);
@@ -74,13 +77,13 @@ public class GawiActivity extends Activity implements OnClickListener {
 		String judgement;
 
 		if (choice == comChoice) {
-			judgement = "비겼습니다.";
+			judgement = getResources().getString(R.string.draw);
 		} else {
 			int diff = comChoice - choice;
 			if ((diff == 1) || (diff == -2)) {
-				judgement = "컴퓨터가 이겼습니다.";
+				judgement = getResources().getString(R.string.lose);
 			} else {
-				judgement = "당신이 이겼습니다.";
+				judgement = getResources().getString(R.string.win);
 			}
 		}
 		return judgement;
