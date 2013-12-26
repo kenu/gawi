@@ -32,9 +32,9 @@ public class GawiActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		Button btn1 = (Button) findViewById(R.id.button1);
-		Button btn2 = (Button) findViewById(R.id.button2);
-		Button btn3 = (Button) findViewById(R.id.button3);
+		Button btn1 = (Button) findViewById(R.id.scissorsBtn);
+		Button btn2 = (Button) findViewById(R.id.rockBtn);
+		Button btn3 = (Button) findViewById(R.id.paperBtn);
 		btn1.setOnClickListener(this);
 		btn2.setOnClickListener(this);
 		btn3.setOnClickListener(this);
@@ -44,13 +44,13 @@ public class GawiActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		int choice = 0;
 		switch (v.getId()) {
-		case R.id.button1:
+		case R.id.scissorsBtn:
 			choice = 0;
 			break;
-		case R.id.button2:
+		case R.id.rockBtn:
 			choice = 1;
 			break;
-		case R.id.button3:
+		case R.id.paperBtn:
 			choice = 2;
 			break;
 		}

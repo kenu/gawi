@@ -10,16 +10,16 @@
         android:text="@string/hello" />
 
     <Button
-        android:id="@+id/rockBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rock" />
-
-    <Button
         android:id="@+id/scissorsBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/scissors" />
+
+    <Button
+        android:id="@+id/rockBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rock" />
 
     <Button
         android:id="@+id/paperBtn"
