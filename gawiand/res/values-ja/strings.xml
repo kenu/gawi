@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">ぐう! ちょき! ぱあ!</string>
+    <string name="app_name">ちょき</string>
+    <string name="scissors">ちょき</string>
+    <string name="rock">ぐう</string>
+    <string name="paper">ぱあ</string>
+    <string name="win">あなたが勝ちました!</string>
+    <string name="lose">コンピュータが勝ちました!</string>
+    <string name="draw">あいこ!</string>
+
+</resources>
